@@ -21,10 +21,12 @@ func unmarshalHaircut(c *routing.Context) *models.Haircut {
 
 func HaircutCreateHandler(env *models.Env) routing.Handler {
 	return func(c *routing.Context) error {
-		haircut := unmarshalHaircut(c)
 
+		haircut := unmarshalHaircut(c)
+		log.Println("received haircut", haircut)
 		_, err := env.DB.Exec(database.QueryInsertHaircut, haircut.Name, haircut.Description)
 		if err != nil {
+			log.Println(err)
 			c.Error(err.Error(), fasthttp.StatusInternalServerError)
 			return err
 		}

@@ -22,10 +22,11 @@ func unmarshalEmployee(c *routing.Context) *models.Employee {
 func EmployeeCreateHandler(env *models.Env) routing.Handler {
 	return func(c *routing.Context) error {
 		employee := unmarshalEmployee(c)
-
+		log.Println("received employee", employee)
 		_, err := env.DB.Exec(database.QueryInsertEmployee, employee.FullName, employee.Role,
-			employee.SalonID, employee.Email, employee.Gender, employee.IsWorking)
+			employee.SalonID, employee.Status, employee.Email, employee.Gender, employee.IsWorking)
 		if err != nil {
+			log.Println(err.Error())
 			c.Error(err.Error(), fasthttp.StatusInternalServerError)
 			return err
 		}

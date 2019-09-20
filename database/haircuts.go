@@ -1,5 +1,5 @@
 package database
 
 const (
-	QueryInsertHaircut = "insert into haircut(name, description) values ($1, $2);"
+	QueryInsertHaircut = "insert into haircuts(name, description) values ($1, $2);"
 )

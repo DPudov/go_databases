@@ -25,7 +25,7 @@ func DealCreateHandler(env *models.Env) routing.Handler {
 		deal := unmarshalDeal(c)
 
 		_, err := env.DB.Exec(database.QueryInsertDeal, deal.CustomerID,
-			deal.HaircutID, deal.EmployeeID, deal.PriceID, deal.Date)
+			deal.HaircutID, deal.EmployeeID, deal.PriceID)
 		if err != nil {
 
 			if err, ok := err.(*pq.Error); ok {

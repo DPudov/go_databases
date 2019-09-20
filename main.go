@@ -94,7 +94,7 @@ func main() {
 		MigrationsUpFileName:   migrationsUp,
 		MigrationsDownFileName: migrationsDown,
 	}
-	env := initDatabase(database, true)
+	env := initDatabase(database, false)
 
 	router := routers.InitRouter(env)
 	err := fasthttp.ListenAndServe(apiPort, router.HandleRequest)
